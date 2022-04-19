@@ -1,1 +1,1 @@
-# gcp-minecraft-server
+# gcp_minecraft_server
