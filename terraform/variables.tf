@@ -37,10 +37,6 @@ variable "service_account" {
 
 }
 
-variable "service_account_scopes" {
-
-}
-
 variable "startup_script" {
 
 }

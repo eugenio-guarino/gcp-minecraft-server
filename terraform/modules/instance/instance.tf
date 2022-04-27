@@ -4,7 +4,7 @@ resource "google_compute_instance" "default" {
   zone                      = var.zone
   allow_stopping_for_update = var.allow_stop_updates
   depends_on                = [var.dependson]
-  tags                      = var.network_tags
+  tags                      = [var.network_tags]
 
   boot_disk {
     initialize_params {
@@ -21,11 +21,6 @@ resource "google_compute_instance" "default" {
 
   service_account {
     email  = var.service_account
-    scopes = var.service_account_scopes
-  }
-
-  metadata = {
-    enable_oslogin = "TRUE"
   }
 
   metadata_startup_script = file(var.startup_script)

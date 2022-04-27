@@ -14,7 +14,7 @@ env:
   TF_VAR_zone: ${{ secrets.ZONE }}
   TF_VAR_machine_type: 'custom_2_8192'
   TF_VAR_instance_name: ${{ secrets.INSTANCE_NAME }}
-  TF_VAR_startup_script: './terraform/startup_script.sh'
+  TF_VAR_startup_script: 'startup_script.sh'
   TF_VAR_allow_stop_updates: true
   TF_VAR_boot_disk_image: 'ubuntu_os_cloud/ubuntu-2204-lts'
   TF_VAR_boot_disk_size: 80
