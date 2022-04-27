@@ -51,7 +51,6 @@ jobs:
           tf_actions_comment: "false"
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: plan
-          args: '-backend-config="bucket=${{ secrets.GCP_BUCKET }}" -backend-config="prefix=terraform-state"'
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
 
@@ -62,6 +61,5 @@ jobs:
           tf_actions_comment: "false"
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: apply
-          args: '-backend-config="bucket=${{ secrets.GCP_BUCKET }}" -backend-config="prefix=terraform-state"'
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
