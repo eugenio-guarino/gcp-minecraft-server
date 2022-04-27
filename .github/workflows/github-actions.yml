@@ -21,7 +21,6 @@ env:
   TF_VAR_boot_disk_size: 80
   TF_VAR_service_account: ${{ secrets.GCP_SA_EMAIL}}
   TF_VAR_service_account_scopes: ${{ secrets.GCP_SA_SCOPES}}
-  TF_VAR_bucket: ${{ secrets.GCP_BUCKET}}
   
 jobs:
   terraform:
@@ -47,6 +46,17 @@ jobs:
           tf_actions_comment: "false"
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: init
+          args: '-backend-config="bucket=${{ secrets.GCP_bucket }}"'
+
+      - name: "Terraform Plan"
+        uses: ops18/terraform-github-actions@master
+        with:
+          tf_actions_version: ${{ env.tf_version }}
+          tf_actions_comment: "false"
+          tf_actions_working_dir: ${{ env.tf_working_dir }}
+          tf_actions_subcommand: plan
+          args: '-backend-config="bucket=${{ secrets.GCP_bucket }}"'
+
           
       - name: "Terraform Apply"
         uses: ops18/terraform-github-actions@master
@@ -55,3 +65,4 @@ jobs:
           tf_actions_comment: "false"
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: apply
+          args: '-backend-config="bucket=${{ secrets.GCP_bucket }}"'
