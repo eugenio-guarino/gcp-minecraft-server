@@ -1,7 +1,7 @@
 name: Deploy Infrastructure
 
-on: [push]
-  # workflow_dispatch:
+on: #[push]
+  workflow_dispatch:
   #repository_dispatch:
 env:
   tf_version: 'latest'
