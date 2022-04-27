@@ -19,4 +19,5 @@ module "minecraft_server" {
   nat_ip                 = module.minecraft_ip_address.ip_addr
   zone                   = var.zone
   service_account        = var.service_account
+  service_account_scopes = ["cloud-platform"]
 }
