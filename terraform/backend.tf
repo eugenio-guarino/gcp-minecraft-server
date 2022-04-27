@@ -5,9 +5,7 @@ provider "google" {
 
 terraform {
   backend "gcs" {
-      config = {
-      bucket  = var.bucket
-      prefix  = "terraform-state"
-    }
+    bucket  = var.bucket
+    prefix  = "terraform-state"
   }
 }
