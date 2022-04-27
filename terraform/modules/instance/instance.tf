@@ -4,7 +4,7 @@ resource "google_compute_instance" "default" {
   zone                      = var.zone
   allow_stopping_for_update = var.allow_stop_updates
   depends_on                = [var.dependson]
-  tags                      = [var.network_tags]
+  tags                      = var.network_tags
 
   boot_disk {
     initialize_params {
