@@ -29,11 +29,11 @@ jobs:
 
       - name: set GCP project
         id: config_project
-        run: gcloud config set project xxxx
+        run: gcloud config set project ${{ secrets.PROJECT_NAME }}
 
       - name: "Decrypt key service account"
         id: decrypt_SA
-        run: gcloud secrets versions access latest --secret=terraform-key --project="xxxx" 
+        run: gcloud secrets versions access latest --secret=terraform-key --project="${{ secrets.PROJECT_NAME }}" 
         working-directory: "environments/${{ env.BRANCH_NAME }}"
 
       - name: "Terraform Init"
