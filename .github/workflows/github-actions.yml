@@ -20,6 +20,7 @@ env:
   TF_VAR_service_account: ${{ secrets.GCP_SA_EMAIL}}
   TF_VAR_service_account_scopes: ${{ secrets.GCP_SA_SCOPES}}
   TF_VAR_network_tags: ${{ secrets.GCP_NETWORK_TAGS}}
+  TF_VAR_startup_script: './startup-script.sh'
   GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
 
 jobs:
@@ -42,8 +43,6 @@ jobs:
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: init
           args: '-backend-config="bucket=${{ secrets.GCP_BUCKET }}" -backend-config="prefix=terraform-state"'
-        env:
-          TF_VAR_startup_script: ${{github.workspace}}/terraform/startup_script.sh
 
       - name: "Terraform Plan"
         uses: ops18/terraform-github-actions@master
@@ -52,8 +51,6 @@ jobs:
           tf_actions_comment: "false"
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: plan
-        env:
-          TF_VAR_startup_script: ${{github.workspace}}/terraform/startup_script.sh
 
       - name: "Terraform Apply"
         uses: ops18/terraform-github-actions@master
@@ -62,5 +59,3 @@ jobs:
           tf_actions_comment: "false"
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: apply
-        env:
-          TF_VAR_startup_script: ${{github.workspace}}/terraform/startup_script.sh
