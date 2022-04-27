@@ -33,6 +33,7 @@ jobs:
           tf_actions_subcommand: init
         env:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
+          TF_VAR_bucket: ${{ secrets.GCP_BUCKET}}
           
       - name: "Terraform Apply"
         uses: ops18/terraform-github-actions@master
