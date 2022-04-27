@@ -18,6 +18,7 @@ resource "google_compute_instance" "default" {
     
     access_config {
       nat_ip = var.nat_ip
+      network_tier = "STANDARD"
     }
   }
 
