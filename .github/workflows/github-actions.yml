@@ -21,7 +21,6 @@ env:
   TF_VAR_boot_disk_size: 80
   TF_VAR_service_account: ${{ secrets.GCP_SA_EMAIL}}
   TF_VAR_service_account_scopes: ${{ secrets.GCP_SA_SCOPES}}
-  GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SA_KEY}}
 
 jobs:
   terraform:
@@ -32,10 +31,15 @@ jobs:
       - name: checkout
         uses: actions/checkout@master
 
+      - name: Set env
+        run: |
+         echo  ${{secrets.GCP_SA_KEY}} > gcloud-api-key.json
+         echo "GCP_CREDENTIALS=$(pwd)/gcloud-api-key.json" >> $GITHUB_ENV
+
       - name: 'Authenticate to Google Cloud'
         uses: 'google-github-actions/auth@v0'
         with:
-          credentials_json: '${{ secrets.GCP_SA_KEY }}'
+          credentials_json: '${{ env.GCP_CREDENTIALS }}'
 
       - name: set GCP project
         run: gcloud config set project ${{ secrets.PROJECT_NAME }}
