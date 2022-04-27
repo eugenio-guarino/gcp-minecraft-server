@@ -33,7 +33,7 @@ jobs:
 
       - name: Set env
         run: |
-         echo  ${{secrets.GCP_SA_KEY}} > gcloud-api-key.json
+         jq ${{secrets.GCP_SA_KEY}} > gcloud-api-key.json
          echo "GCP_CREDENTIALS=gcloud-api-key.json" >> $GITHUB_ENV
 
       - name: 'Authenticate to Google Cloud'
