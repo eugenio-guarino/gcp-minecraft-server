@@ -1,4 +1,4 @@
-name: Deploy Infrastructure
+name: Destroy Infrastructure
 
 on: #[push]
   workflow_dispatch:
@@ -43,7 +43,7 @@ jobs:
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: init
           args: '-backend-config="bucket=${{ secrets.GCP_BUCKET }}" -backend-config="prefix=terraform-state"'
-          
+
       - name: "Terraform destroy"
         uses: ops18/terraform-github-actions@master
         with:
