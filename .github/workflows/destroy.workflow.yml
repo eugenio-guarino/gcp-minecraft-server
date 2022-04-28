@@ -1,0 +1,54 @@
+name: Deploy Infrastructure
+
+on: #[push]
+  workflow_dispatch:
+  #repository_dispatch:
+env:
+  tf_version: 'latest'
+  tf_working_dir: './terraform'
+  TF_VAR_region:  ${{ secrets.REGION }}
+  TF_VAR_project: ${{ secrets.PROJECT_NAME }}
+  TF_VAR_ip_name: ${{ secrets.IP_NAME}}
+  TF_VAR_network_tier: 'STANDARD'
+  TF_VAR_address_type: 'EXTERNAL'
+  TF_VAR_zone: ${{ secrets.ZONE }}
+  TF_VAR_machine_type: 'custom-2-8192'
+  TF_VAR_instance_name: ${{ secrets.INSTANCE_NAME }}
+  TF_VAR_allow_stop_updates: true
+  TF_VAR_boot_disk_image: 'ubuntu-os-cloud/ubuntu-2204-lts'
+  TF_VAR_boot_disk_size: 80
+  TF_VAR_service_account: ${{ secrets.GCP_SA_EMAIL}}
+  TF_VAR_service_account_scopes: ${{ secrets.GCP_SA_SCOPES}}
+  TF_VAR_network_tags: ${{ secrets.GCP_NETWORK_TAGS}}
+  TF_VAR_startup_script: './startup-script.sh'
+  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY}}
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: checkout
+        uses: actions/checkout@master
+
+      - name: set GCP project
+        run: gcloud config set project ${{ secrets.PROJECT_NAME }}
+
+      - name: "Terraform Init"
+        uses: ops18/terraform-github-actions@master
+        with:
+          tf_actions_version: ${{ env.tf_version }}
+          tf_actions_comment: "false"
+          tf_actions_working_dir: ${{ env.tf_working_dir }}
+          tf_actions_subcommand: init
+          args: '-backend-config="bucket=${{ secrets.GCP_BUCKET }}" -backend-config="prefix=terraform-state"'
+          
+      - name: "Terraform destroy"
+        uses: ops18/terraform-github-actions@master
+        with:
+          tf_actions_version: ${{ env.tf_version }}
+          tf_actions_comment: "false"
+          tf_actions_working_dir: ${{ env.tf_working_dir }}
+          tf_actions_subcommand: apply
+          args: '-destroy'
