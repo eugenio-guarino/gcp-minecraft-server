@@ -1,8 +1,7 @@
 name: Deploy Infrastructure
 
-on: #[push]
-  workflow_dispatch:
-  #repository_dispatch:
+on:
+  repository_dispatch:
 env:
   tf_version: 'latest'
   tf_working_dir: './terraform'
