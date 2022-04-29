@@ -2,6 +2,7 @@ name: Destroy Infrastructure
 
 on:
   repository_dispatch:
+    types: [destroy-infr]
 env:
   tf_version: 'latest'
   tf_working_dir: './terraform'
