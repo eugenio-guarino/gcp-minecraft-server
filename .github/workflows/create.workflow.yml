@@ -53,6 +53,13 @@ jobs:
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: apply
 
+      - name: 'Use Terraform Output'
+        id: output
+        run: |
+          export TF_OUTPUTS=echo ${{ steps.terraform.outputs.tf_actions_output  }}
+          echo "::set-output name=tf_output::$TF_OUTPUT" 
+        
+
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
         with:
@@ -64,4 +71,4 @@ jobs:
           to: ${{secrets.EMAIL_LIST}} # obiwan@example.com,yoda@example.com
           from: Aria Server
           secure: true
-          body: ${{steps.terraform.outputs.tf_actions_output}}
+          body: ${{steps.output.outputs.tf_output}}
