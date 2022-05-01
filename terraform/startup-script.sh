@@ -2,10 +2,10 @@
 sudo su
 
 ## install packages
-apt update && sudo apt upgrade
+apt update && apt upgrade
 apt install default-jre
 apt install unzip
-sudo apt install openjdk-17-jdk
+apt install openjdk-17-jdk
 
 # download minecraft server
 wget https://maven.minecraftforge.net/net/minecraftforge/forge/1.18.2-40.1.0/forge-1.18.2-40.1.0-installer.jar
