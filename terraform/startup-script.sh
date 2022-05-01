@@ -38,4 +38,4 @@ gsutil -m cp -r gs://minecraft-server-storage-bucket/server.properties /opt/mine
 
 #run minecraft server
 chmod +x run.sh
-sh run.sh &
+# sh run.sh &
