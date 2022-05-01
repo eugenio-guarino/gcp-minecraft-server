@@ -61,6 +61,14 @@ jobs:
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: output
 
+
+      - name: 'Get IP address'
+        id: address
+        run: |
+          apt-get install jq
+          export ADDRESS= $(echo ${{ steps.terraform.outputs.tf_actions_output }} | jq -r '.server-ip-name.value')
+          echo "::set-output name=ip_address::$ADDRESS"       
+
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
         with:
@@ -72,4 +80,4 @@ jobs:
           to: ${{secrets.EMAIL_LIST}} # obiwan@example.com,yoda@example.com
           from: Aria Server
           secure: true
-          body: ${{steps.terraform.outputs.tf_actions_output}}
+          body: ${{steps.address.outputs.ip_address}}:25565
