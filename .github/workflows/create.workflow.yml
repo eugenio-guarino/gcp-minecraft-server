@@ -64,4 +64,4 @@ jobs:
           to: ${{secrets.EMAIL_LIST}} # obiwan@example.com,yoda@example.com
           from: Aria Server
           secure: true
-          body: steps.apply.outputs.tf_actions_output
+          body: ${{steps.apply.outputs.tf_actions_output}}
