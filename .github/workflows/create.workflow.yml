@@ -63,7 +63,7 @@ jobs:
 
       - name: 'Get IP address'
         run: |
-          ADDRESS=echo ${{ steps.terraform.outputs.tf_actions_output }} | grep -o '"value":"[^"]*' | grep -o '[^"]*$'
+          ADDRESS=$(echo ${{ steps.terraform.outputs.tf_actions_output }} | grep -o '"value":"[^"]*' | grep -o '[^"]*$')
           echo ADDRESS >> $GITHUB_ENV
 
       - name: Send mail
