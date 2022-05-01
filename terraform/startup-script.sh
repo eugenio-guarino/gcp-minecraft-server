@@ -19,7 +19,7 @@ mv forge-1.18.2-40.1.0-installer.jar /opt/minecraft
 cd /opt/minecraft
 
 # run java
-java -Xms1024M -Xmx7000M -jar forge-1.18.2-40.1.0-installer.jar --installServer
+java -Xms1G -Xmx16G -jar forge-1.18.2-40.1.0-installer.jar --installServer
 
 echo eula=true>eula.txt
 
