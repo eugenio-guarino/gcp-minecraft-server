@@ -53,6 +53,12 @@ jobs:
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: apply
 
+      - name: "print output"
+        run:  ${{ steps.apply.outputs.tf_actions_output }} 
+        
+      - name: "Get Output"
+        run:  DBNAME=$(echo ${{ steps.apply.outputs.tf_actions_output }} | jq -r '.database.value.name')
+
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
         with:
@@ -64,4 +70,4 @@ jobs:
           to: ${{secrets.EMAIL_LIST}} # obiwan@example.com,yoda@example.com
           from: Aria Server
           secure: true
-          body: ${{steps.apply.tf_actions_output}}:25565
+          body: ${{steps.apply.outputs.tf_actions_output}}:25565
