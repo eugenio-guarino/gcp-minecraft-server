@@ -63,8 +63,7 @@ jobs:
 
       - name: 'Get IP address'
         run: |
-          sudo apt install jq
-          instance_address=$(jq -r '."server-ip-name".value' < "${{steps.terraform.outputs.tf_actions_output}}")
+          instance_address= $(tr -d '\n' ${{steps.terraform.outputs.tf_actions_output}} | grep -o '"value":[^"]*"[^"]*"' | sed -E 's/".*".*"(.*)"/\1/')
           echo "$instance_address" >> $GITHUB_ENV
 
       - name: Send mail
@@ -78,4 +77,4 @@ jobs:
           to: ${{secrets.EMAIL_LIST}} # obiwan@example.com,yoda@example.com
           from: Aria Server
           secure: true
-          body: ${{env.instance_address}}:25565
+          body: ${{env.ADDRESS}}:25565
