@@ -63,9 +63,6 @@ jobs:
 
       - name: 'Get IP address'
         run: |
-          # sudo apt-get install jq   
-          # ADDRESS=$(echo ${{ steps.terraform.outputs.tf_actions_output }} | jq -r '.server-ip-name.value')
-          # echo ADDRESS >> $GITHUB_ENV
           ADDRESS=echo ${{ steps.terraform.outputs.tf_actions_output }} | grep -o '"value":"[^"]*' | grep -o '[^"]*$'
           echo ADDRESS >> $GITHUB_ENV
 
