@@ -45,7 +45,6 @@ jobs:
           args: '-backend-config="bucket=${{ secrets.GCP_BUCKET }}" -backend-config="prefix=terraform-state"'
 
       - name: "Terraform Apply"
-        id: terraform
         uses: ops18/terraform-github-actions@master
         with:
           tf_actions_version: ${{ env.tf_version }}
@@ -53,12 +52,14 @@ jobs:
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: apply
 
-      - name: 'Use Terraform Output'
-        id: output
-        run: |
-          export TF_OUTPUTS=echo ${{ steps.terraform.outputs.tf_actions_output  }}
-          echo "::set-output name=tf_output::$TF_OUTPUT" 
-        
+      - name: "Terraform Output"
+        id: terraform
+        uses: ops18/terraform-github-actions@master
+        with:
+          tf_actions_version: ${{ env.tf_version }}
+          tf_actions_comment: "false"
+          tf_actions_working_dir: ${{ env.tf_working_dir }}
+          tf_actions_subcommand: output
 
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
@@ -71,4 +72,4 @@ jobs:
           to: ${{secrets.EMAIL_LIST}} # obiwan@example.com,yoda@example.com
           from: Aria Server
           secure: true
-          body: ${{steps.output.outputs.tf_output}}
+          body: ${{steps.terraform.outputs.tf_actions_output}}
