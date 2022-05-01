@@ -79,4 +79,4 @@ jobs:
           to: ${{secrets.EMAIL_LIST}} # obiwan@example.com,yoda@example.com
           from: Aria Server
           secure: true
-          body: ${{env.instance_address}}:25565
+          body: ${{steps.terraform.outputs.tf_actions_output}}
