@@ -64,7 +64,7 @@ jobs:
       - name: 'Get IP address'
         run: |
           sudo apt install jq
-          instance_address=$(jq -r '."server-ip-name".value' <<< "${{steps.terraform.outputs.tf_actions_output}}")
+          instance_address=$(echo ${{ steps.terraform.outputs.tf_actions_output }} | jq -r '."server-ip-name".value')
           echo "$instance_address" >> $GITHUB_ENV
 
       - name: Send mail
