@@ -63,7 +63,9 @@ jobs:
 
       - name: 'Get IP address'
         run: |
-          instance_address= $(tr -d '\n' ${{steps.terraform.outputs.tf_actions_output}} | grep -o '"value":[^"]*"[^"]*"' | sed -E 's/".*".*"(.*)"/\1/')
+          sudo apt install jq
+          trimmed_string=$ echo "${{steps.terraform.outputs.tf_actions_output}}" | xargs
+          instance_address=$(jq -r '."server-ip-name".value' <<< "$trimmed_string")
           echo "$instance_address" >> $GITHUB_ENV
 
       - name: Send mail
