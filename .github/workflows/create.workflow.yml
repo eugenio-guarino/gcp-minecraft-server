@@ -65,8 +65,7 @@ jobs:
       - name: 'Get IP address'
         id: address
         run: |
-          sudo su
-          apt-get install jq
+          sudo apt-get install jq
           export ADDRESS= $(echo ${{ steps.terraform.outputs.tf_actions_output }} | jq -r '.server-ip-name.value')
           echo "::set-output name=ip_address::$ADDRESS"       
 
