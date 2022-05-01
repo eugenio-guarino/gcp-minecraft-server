@@ -30,7 +30,8 @@ rm mods.zip
 
 # download datapack
 gsutil -m cp -r gs://minecraft-server-storage-bucket/AriA.zip /opt/minecraft/world/datapacks
-unzip /opt/minecraft/world/datapacks/AriA.zip
+unzip /opt/minecraft/world/datapacks/AriA.zip -d /opt/minecraft/world/datapacks
+rm AriA.zip
 
 # download server.properties
 gsutil -m cp -r gs://minecraft-server-storage-bucket/server.properties /opt/minecraft/
