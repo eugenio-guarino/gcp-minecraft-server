@@ -63,8 +63,9 @@ jobs:
 
       - name: 'Get IP address'
         run: |
-          ADDRESS=$(echo ${{ steps.terraform.outputs.tf_actions_output }} | grep -o '"value":"[^"]*' | grep -o '[^"]*$')
-          echo ADDRESS >> $GITHUB_ENV
+          sudo apt install jq
+          code_val=$(jq -r '.server-ip-name.value' <<< "${{steps.terraform.outputs.tf_actions_output}}")
+          echo "$code_val" >> $GITHUB_ENV
 
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
