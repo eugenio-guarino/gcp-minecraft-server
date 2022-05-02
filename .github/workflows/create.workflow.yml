@@ -72,4 +72,6 @@ jobs:
           to: ${{secrets.EMAIL_LIST}} # obiwan@example.com,yoda@example.com
           from: Aria Server
           secure: true
-          body: == NEW IP ADDRESS == \n${{steps.terraform.outputs.tf_actions_output}} \nThe new server address is IP_ADDRESS_VALUE:25565 \nHave fun!
+          body: ${{steps.terraform.outputs.tf_actions_output}} 
+            The new server address is IP_ADDRESS_VALUE:25565
+            Have fun!
