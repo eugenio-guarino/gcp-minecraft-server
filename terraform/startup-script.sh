@@ -28,11 +28,14 @@ rm mods.zip
 
 # download world from cloud storage
 gsutil -m cp gs://minecraft-server-storage-bucket/Aria.zip /opt/minecraft/
-unzip /opt/minecraft/Aria.zip
+unzip Aria.zip
 rm Aria.zip
 
 # download server.properties from cloud storage
 gsutil -m cp gs://minecraft-server-storage-bucket/server.properties /opt/minecraft/
+
+# download ops.json from cloud storage
+gsutil -m cp gs://minecraft-server-storage-bucket/ops.json /opt/minecraft/
 
 # download user cache from cloud storage
 gsutil -m cp gs://minecraft-server-storage-bucket/usercache.json /opt/minecraft/
@@ -45,8 +48,7 @@ gsutil -m cp gs://minecraft-server-storage-bucket/notify.sh /opt/minecraft/
 
 # run minecraft server
 chmod +x run.sh
-chmod +x auto-destroy.sh
 
-nohup bash ./run.sh </dev/null &>/dev/null &
+nohup bash run.sh </dev/null &>/dev/null &
 nohup bash auto-destroy.sh </dev/null &>/dev/null &
 nohup bash notify.sh </dev/null &>/dev/null &
