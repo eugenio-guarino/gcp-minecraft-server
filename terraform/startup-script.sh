@@ -11,7 +11,7 @@ apt install openjdk-17-jdk -y
 wget https://maven.minecraftforge.net/net/minecraftforge/forge/1.18.2-40.1.0/forge-1.18.2-40.1.0-installer.jar
 
 # create directory
-mkdir -p /opt/minecraft/world/datapacks
+mkdir -p /opt/minecraft/aria/datapacks
 
 # move forge in new directory
 mv forge-1.18.2-40.1.0-installer.jar /opt/minecraft
@@ -29,8 +29,8 @@ unzip mods.zip
 rm mods.zip
 
 # download datapack
-gsutil -m cp -r gs://minecraft-server-storage-bucket/AriA.zip /opt/minecraft/world/datapacks
-unzip /opt/minecraft/world/datapacks/AriA.zip -d /opt/minecraft/world/datapacks
+gsutil -m cp -r gs://minecraft-server-storage-bucket/AriA.zip /opt/minecraft/aria/datapacks
+unzip /opt/minecraft/aria/datapacks/AriA.zip -d /opt/minecraft/aria/datapacks
 rm AriA.zip
 
 # download server.properties
