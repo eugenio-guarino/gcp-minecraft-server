@@ -7,6 +7,7 @@ apt install default-jre -y
 apt install unzip -y
 apt install openjdk-17-jdk -y
 apt install zip -y
+apt install coreutils -y
 
 # create directory
 mkdir -p /opt/minecraft
@@ -43,6 +44,5 @@ gsutil -m cp gs://minecraft-server-storage-bucket/auto-destroy.sh /opt/minecraft
 chmod +x run.sh
 chmod +x auto-destroy.sh
 
-nohup 'bash run.sh' &
-
-nohup watch -n5 'auto-destroy.sh' &
+nohup bash ./run.sh </dev/null &>/dev/null &
+nohup bash auto-destroy.sh </dev/null &>/dev/null &
