@@ -6,6 +6,7 @@ apt update -y && apt upgrade -y
 apt install default-jre -y
 apt install unzip -y
 apt install openjdk-17-jdk -y
+apt install zip -y
 
 # download minecraft server
 wget https://maven.minecraftforge.net/net/minecraftforge/forge/1.18.2-40.1.0/forge-1.18.2-40.1.0-installer.jar
@@ -29,13 +30,18 @@ unzip mods.zip
 rm mods.zip
 
 # download datapack
-gsutil -m cp -r gs://minecraft-server-storage-bucket/AriA.zip /opt/minecraft/Aria/datapacks
-unzip /opt/minecraft/Aria/datapacks/AriA.zip -d /opt/minecraft/Aria/datapacks
-rm AriA.zip
+gsutil -m cp -r gs://minecraft-server-storage-bucket/Aria.zip /opt/minecraft/
+unzip /opt/minecraft/Aria.zip
+rm Aria.zip
 
 # download server.properties
 gsutil -m cp -r gs://minecraft-server-storage-bucket/server.properties /opt/minecraft/
 
+#user cache
+gsutil -m cp -r gs://minecraft-server-storage-bucket/usercache.json /opt/minecraft/
+gsutil -m cp -r gs://minecraft-server-storage-bucket/auto-shutdown.sh /opt/minecraft/
+
 #run minecraft server
 chmod +x run.sh
+chmod +x auto-shutdown.sh
 # sh run.sh &
