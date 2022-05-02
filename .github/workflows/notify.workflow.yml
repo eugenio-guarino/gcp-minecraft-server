@@ -2,7 +2,7 @@ name: Deploy Infrastructure
 
 on:
   repository_dispatch:
-    types: [create-infr]
+    types: [notify-players]
 env:
   tf_version: "latest"
   tf_working_dir: "./terraform"
@@ -50,3 +50,26 @@ jobs:
           tf_actions_comment: "false"
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: apply
+
+      - name: "Terraform Output"
+        id: terraform
+        uses: ops18/terraform-github-actions@master
+        with:
+          tf_actions_version: ${{ env.tf_version }}
+          tf_actions_comment: "false"
+          tf_actions_working_dir: ${{ env.tf_working_dir }}
+          tf_actions_subcommand: output
+
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: New AriA Server Address
+          to: ${{secrets.EMAIL_LIST}} # obiwan@example.com,yoda@example.com
+          from: AriA Server
+          secure: true
+          body: ${{steps.terraform.outputs.tf_actions_output}}
+            The new server address is IP_ADDRESS_VALUE:25565
