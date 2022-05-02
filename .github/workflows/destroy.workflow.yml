@@ -52,3 +52,16 @@ jobs:
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: apply
           args: '-destroy'
+
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: Server Shutdown
+          to: ${{secrets.EMAIL_LIST}} # obiwan@example.com,yoda@example.com
+          from: AriA Server
+          secure: true
+          body: The server was shut down due to low activity.
