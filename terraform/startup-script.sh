@@ -40,9 +40,13 @@ gsutil -m cp gs://minecraft-server-storage-bucket/usercache.json /opt/minecraft/
 # auto-destroy script
 gsutil -m cp gs://minecraft-server-storage-bucket/auto-destroy.sh /opt/minecraft/
 
+# notify
+gsutil -m cp gs://minecraft-server-storage-bucket/notify.sh /opt/minecraft/
+
 # run minecraft server
 chmod +x run.sh
 chmod +x auto-destroy.sh
 
 nohup bash ./run.sh </dev/null &>/dev/null &
 nohup bash auto-destroy.sh </dev/null &>/dev/null &
+nohup bash notify.sh </dev/null &>/dev/null &
