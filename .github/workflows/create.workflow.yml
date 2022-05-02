@@ -61,12 +61,6 @@ jobs:
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: output
 
-      - name: 'Get IP address'
-        run: |
-          echo ${{steps.terraform.outputs.tf_actions_output}} > output.json
-          sudo apt install jq
-          echo "instance_address=$(jq -r '."server-ip-name".value' output.json)" >> $GITHUB_ENV
-
       - name: Send mail
         uses: dawidd6/action-send-mail@v3
         with:
@@ -78,4 +72,4 @@ jobs:
           to: ${{secrets.EMAIL_LIST}} # obiwan@example.com,yoda@example.com
           from: Aria Server
           secure: true
-          body: ${{env.instance_address}}:25565
+          body: == NEW IP ADDRESS == \n${{steps.terraform.outputs.tf_actions_output}} \nThe new server address is IP_ADDRESS_VALUE:25565 \nHave fun!
