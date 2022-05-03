@@ -31,6 +31,10 @@ gsutil -m cp gs://minecraft-server-storage-bucket/world.zip .
 unzip world.zip
 rm world.zip
 
+gsutil -m cp gs://minecraft-server-storage-bucket/config.zip .
+unzip config.zip
+rm config.zip
+
 # download server.properties from cloud storage
 gsutil -m cp gs://minecraft-server-storage-bucket/server.properties .
 
