@@ -26,10 +26,10 @@ gsutil -m cp -r gs://minecraft-server-storage-bucket/mods.zip /opt/minecraft/
 unzip mods.zip
 rm mods.zip
 
-# download world from cloud storage
-# gsutil -m cp gs://minecraft-server-storage-bucket/world.zip /opt/minecraft/
-# unzip world.zip
-# rm world.zip
+download world from cloud storage
+gsutil -m cp gs://minecraft-server-storage-bucket/world.zip /opt/minecraft/
+unzip world.zip
+rm world.zip
 
 # download server.properties from cloud storage
 gsutil -m cp gs://minecraft-server-storage-bucket/server.properties /opt/minecraft/
