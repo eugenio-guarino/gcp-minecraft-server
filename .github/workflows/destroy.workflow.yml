@@ -60,8 +60,8 @@ jobs:
           server_port: 465
           username: ${{secrets.MAIL_USERNAME}}
           password: ${{secrets.MAIL_PASSWORD}}
-          subject: Server Shutdown
+          subject: server shut down notice
           to: ${{secrets.EMAIL_LIST}} # obiwan@example.com,yoda@example.com
-          from: AriA Server
+          from: AriA
           secure: true
-          body: The server was shut down due to low activity.
+          body: Server is no more.
