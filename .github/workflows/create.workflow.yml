@@ -28,6 +28,19 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     steps:
+      - name: Send mail
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{secrets.MAIL_USERNAME}}
+          password: ${{secrets.MAIL_PASSWORD}}
+          subject: server startup
+          to: ${{secrets.EMAIL_LIST}} # obiwan@example.com,yoda@example.com
+          from: AriA
+          secure: true
+          body: The server is being configured.
+
       - name: checkout
         uses: actions/checkout@master
 
