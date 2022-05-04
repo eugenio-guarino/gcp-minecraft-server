@@ -60,16 +60,10 @@ jobs:
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: output
 
-      - name: Send mail
-        uses: dawidd6/action-send-mail@v3
+      - name: send telegram message
+        uses: appleboy/telegram-action@master
         with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{secrets.MAIL_USERNAME}}
-          password: ${{secrets.MAIL_PASSWORD}}
-          subject: server ready
-          to: ${{secrets.EMAIL_LIST}} # obiwan@example.com,yoda@example.com
-          from: AriA
-          secure: true
-          body: ${{steps.terraform.outputs.tf_actions_output}}
-            --> IP_ADDRESS_VALUE:25565
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ${{steps.terraform.outputs.tf_actions_output}}
