@@ -61,7 +61,7 @@ jobs:
           tf_actions_subcommand: plan
 
       - name: "Terraform Apply"
-        if: ${{steps.terraform-plan.outputs.tf_actions_plan_has_changes == true}}
+        if: ${{steps.terraform-plan.outputs.tf_actions_plan_has_changes == 'true'}}
         uses: ops18/terraform-github-actions@master
         with:
           tf_actions_version: ${{ env.tf_version }}
@@ -70,7 +70,7 @@ jobs:
           tf_actions_subcommand: apply
 
       - name: send telegram message 2
-        if: ${{steps.terraform-plan.outputs.tf_actions_plan_has_changes == false}}
+        if: ${{steps.terraform-plan.outputs.tf_actions_plan_has_changes == 'false'}}
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
