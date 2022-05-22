@@ -39,7 +39,7 @@ rm config.zip
 gsutil -m cp gs://minecraft-server-storage-bucket/server.properties .
 
 # download ops.json from cloud storage
-# gsutil -m cp gs://minecraft-server-storage-bucket/ops.json .
+gsutil -m cp gs://minecraft-server-storage-bucket/ops.json .
 
 # download user cache from cloud storage
 gsutil -m cp gs://minecraft-server-storage-bucket/usercache.json .
