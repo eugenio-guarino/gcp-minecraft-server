@@ -72,5 +72,5 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-          ip: ${{steps.regex-match.outputs.match}}
+            ip: ${{steps.regex-match.outputs.match}}
             
