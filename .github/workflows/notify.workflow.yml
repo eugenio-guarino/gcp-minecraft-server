@@ -1,4 +1,4 @@
-name: Send email to players
+name: send ip address to players
 
 on:
   repository_dispatch:
