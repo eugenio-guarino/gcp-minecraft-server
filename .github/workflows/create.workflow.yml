@@ -34,7 +34,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            The server is being configured. Please wait.
+            ${{ secrets.CREATE_MESSAGE }}
 
       - name: checkout
         uses: actions/checkout@master
