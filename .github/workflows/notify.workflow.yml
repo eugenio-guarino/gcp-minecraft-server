@@ -64,7 +64,7 @@ jobs:
         id: regex-match
         with:
           text: ${{steps.terraform.outputs.tf_actions_output}}
-          regex: '^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$'
+          regex: '(?:[0-9]{1,3}\.){3}[0-9]{1,3}'
 
       - name: send telegram message
         uses: appleboy/telegram-action@master
