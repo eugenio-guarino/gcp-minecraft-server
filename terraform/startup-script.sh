@@ -22,33 +22,33 @@ java -XX:+UseG1GC -Xmx6500M -Xms6500M -XX:InitiatingHeapOccupancyPercent=20 -XX:
 echo eula=true>eula.txt
 
 # download mods from cloud storage
-gsutil -m cp -r gs://minecraft-server-storage-bucket/mods.zip .
+gsutil -m cp -r gs://minecraft-server-storage-bucket/config-files/mods.zip .
 unzip mods.zip
 rm mods.zip
 
 # download world from cloud storage
-gsutil -m cp gs://minecraft-server-storage-bucket/world.zip .
+gsutil -m cp gs://minecraft-server-storage-bucket/config-files/world.zip .
 unzip world.zip
 rm world.zip
 
-gsutil -m cp gs://minecraft-server-storage-bucket/config.zip .
+gsutil -m cp gs://minecraft-server-storage-bucket/config-files/config.zip .
 unzip config.zip
 rm config.zip
 
 # download server.properties from cloud storage
-gsutil -m cp gs://minecraft-server-storage-bucket/server.properties .
+gsutil -m cp gs://minecraft-server-storage-bucket/config-files/server.properties .
 
 # download ops.json from cloud storage
-gsutil -m cp gs://minecraft-server-storage-bucket/ops.json .
+gsutil -m cp gs://minecraft-server-storage-bucket/config-files/ops.json .
 
 # download user cache from cloud storage
-gsutil -m cp gs://minecraft-server-storage-bucket/usercache.json .
+gsutil -m cp gs://minecraft-server-storage-bucket/config-files/usercache.json .
 
 # auto-destroy script
-gsutil -m cp gs://minecraft-server-storage-bucket/auto-destroy.sh .
+gsutil -m cp gs://minecraft-server-storage-bucket/scripts/auto-destroy.sh .
 
 # notify
-gsutil -m cp gs://minecraft-server-storage-bucket/notify.sh .
+gsutil -m cp gs://minecraft-server-storage-bucket/scripts/notify.sh .
 
 # run minecraft server
 chmod +x run.sh
