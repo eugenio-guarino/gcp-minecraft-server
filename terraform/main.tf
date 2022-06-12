@@ -20,4 +20,5 @@ module "minecraft_server" {
   zone                   = var.zone
   service_account        = var.service_account
   service_account_scopes = ["cloud-platform"]
+  shutdown_script        = var.shutdown_script
 }

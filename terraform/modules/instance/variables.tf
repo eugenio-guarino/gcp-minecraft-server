@@ -25,6 +25,10 @@ variable "zone" {
 
 }
 
+variable "shutdown_script" {
+
+}
+
 variable "service_account" {
 
 }

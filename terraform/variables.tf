@@ -51,3 +51,7 @@ variable "network_tier" {
 variable "network_tags"{
     
 }
+
+variable "shutdown_script" {
+
+}

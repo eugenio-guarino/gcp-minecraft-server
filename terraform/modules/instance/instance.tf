@@ -27,5 +27,15 @@ resource "google_compute_instance" "default" {
     scopes = var.service_account_scopes
   }
 
+  scheduling {
+    preemptible = true
+    automatic_restart = false
+    provisioning_model = "SPOT"
+  }
+
+  metadata = {
+    shutdown-script = file(var.shutdown_script)
+  }
+
   metadata_startup_script = file(var.startup_script)
 }
