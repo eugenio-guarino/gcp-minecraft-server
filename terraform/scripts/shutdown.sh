@@ -2,4 +2,5 @@
 sudo su
 
 # save data files and destroy ifr
-bash /opt/minecraft/destroy-infr.sh
+cd /opt/minecraft/
+bash destroy-infr.sh
