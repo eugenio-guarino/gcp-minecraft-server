@@ -29,13 +29,13 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     steps:
-      - name: send telegram message
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            ${{ secrets.CREATE_MESSAGE }}
+      # - name: send telegram message
+      #   uses: appleboy/telegram-action@master
+      #   with:
+      #     to: ${{ secrets.TELEGRAM_TO }}
+      #     token: ${{ secrets.TELEGRAM_TOKEN }}
+      #     message: |
+      #       ${{ secrets.CREATE_MESSAGE }}
 
       - name: checkout
         uses: actions/checkout@master
@@ -70,11 +70,11 @@ jobs:
           tf_actions_working_dir: ${{ env.tf_working_dir }}
           tf_actions_subcommand: apply
 
-      - name: send telegram message 2
-        if: ${{steps.terraform-plan.outputs.tf_actions_plan_has_changes == 'false'}}
-        uses: appleboy/telegram-action@master
-        with:
-          to: ${{ secrets.TELEGRAM_TO }}
-          token: ${{ secrets.TELEGRAM_TOKEN }}
-          message: |
-            ${{ secrets.ALREADY_CREATED_MESSAGE }}
+      # - name: send telegram message 2
+      #   if: ${{steps.terraform-plan.outputs.tf_actions_plan_has_changes == 'false'}}
+      #   uses: appleboy/telegram-action@master
+      #   with:
+      #     to: ${{ secrets.TELEGRAM_TO }}
+      #     token: ${{ secrets.TELEGRAM_TOKEN }}
+      #     message: |
+      #       ${{ secrets.ALREADY_CREATED_MESSAGE }}
