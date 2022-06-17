@@ -8,10 +8,7 @@ resource "google_compute_instance" "default" {
 
   boot_disk {
     auto_delete = false
-    initialize_params {
-      image = var.boot_disk_image
-      size  = var.boot_disk_size
-    }
+    source = "minecraft-server-data"
   }
 
   network_interface {
