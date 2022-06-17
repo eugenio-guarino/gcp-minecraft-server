@@ -54,10 +54,10 @@ jobs:
           tf_actions_subcommand: apply
           args: '-destroy'
 
-      # - name: send telegram message
-      #   uses: appleboy/telegram-action@master
-      #   with:
-      #     to: ${{ secrets.TELEGRAM_TO }}
-      #     token: ${{ secrets.TELEGRAM_TOKEN }}
-      #     message: |
-      #       ${{ secrets.DESTROY_MESSAGE }}
+      - name: send telegram message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ${{ secrets.DESTROY_MESSAGE }}
