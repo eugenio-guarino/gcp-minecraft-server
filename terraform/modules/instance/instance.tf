@@ -28,7 +28,7 @@ resource "google_compute_instance" "default" {
     preemptible = true
     automatic_restart = false
     provisioning_model = "SPOT"
-    instance_termination_action = "STOP"
+    instance_termination_action = "DELETE"
   }
 
   metadata = {
