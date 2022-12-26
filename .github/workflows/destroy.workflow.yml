@@ -12,7 +12,7 @@ env:
   TF_VAR_network_tier: "PREMIUM"
   TF_VAR_address_type: "EXTERNAL"
   TF_VAR_zone: ${{ secrets.ZONE }}
-  TF_VAR_machine_type: "t2a-standard-16"
+  TF_VAR_machine_type: "t2a-standard-8"
   TF_VAR_instance_name: ${{ secrets.INSTANCE_NAME }}
   TF_VAR_allow_stop_updates: true
   TF_VAR_boot_disk_image: "ubuntu-os-cloud/ubuntu-2204-lts"
